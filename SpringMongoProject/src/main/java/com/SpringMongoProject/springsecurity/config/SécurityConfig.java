@@ -1,5 +1,6 @@
-package com.SpringMongoProject.springsecurity;
+package com.SpringMongoProject.springsecurity.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,13 +14,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 @EnableWebSecurity
 public class SécurityConfig extends WebSecurityConfigurerAdapter{
    
-	@Override
+	@Autowired 
     public void configure(AuthenticationManagerBuilder auth) throws Exception { 
-		
+		 
 		UserDetails user = User.withDefaultPasswordEncoder().username("admin").password("123").roles("ADMIN").build();
 		auth.inMemoryAuthentication().withUser(user);
 		user = User.withDefaultPasswordEncoder().username("manager").password("123").roles("MANAGER").build();
 		auth.inMemoryAuthentication().withUser(user);
+ 
+   
+		
+		
      }
 	
 	

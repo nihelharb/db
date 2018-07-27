@@ -29,18 +29,17 @@ public class CustomerController {
 	@Autowired
 	CustomerRepository repository;
  
-	@GetMapping("/customers")
+	@GetMapping("/Customers")
 	public List<Customer> getAllCustomers() {
-		System.out.println("Get all Customers...");
- 
+	
 		List<Customer> customers = new ArrayList<>();
 		repository.findAll().forEach(customers::add);
  
 		return customers;
 	}
  
+
 	@PostMapping("/customers/create")
-	//@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Customer postCustomer(@RequestBody Customer customer) {
  
 		Customer _customer = repository.save(new Customer(customer.getName(), customer.getAge()));
@@ -49,8 +48,7 @@ public class CustomerController {
  
 	@DeleteMapping("/customers/{id}")
 	public ResponseEntity<String> deleteCustomer(@PathVariable("id") String id) {
-		System.out.println("Delete Customer with ID = " + id + "...");
- 
+	
 		repository.deleteById(id);
  
 		return new ResponseEntity<>("Customer has been deleted!", HttpStatus.OK);
@@ -58,7 +56,6 @@ public class CustomerController {
  
 	@DeleteMapping("/customers/delete")
 	public ResponseEntity<String> deleteAllCustomers() {
-		System.out.println("Delete All Customers...");
  
 		repository.deleteAll();
  
@@ -66,8 +63,6 @@ public class CustomerController {
 	}
  
 	@GetMapping("customers/age/{age}")
-	//@RequestMapping (value = "/customers/age/{age}", method = RequestMethod.GET, consumes = "application / json")
-
 	public List<Customer> findByAge(@PathVariable int age) {
  
 		List<Customer> customers = repository.findByAge(age);

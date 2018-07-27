@@ -18,8 +18,8 @@ import com.SpringMongoProject.demo.Repository.UserRepository;
 
 
 
-@RestController  // This means that this class is a Controller
-@RequestMapping("/api")  //This means URL's start with /api (after Application path)
+@RestController  
+@RequestMapping("/api")  
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	
